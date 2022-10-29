@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="welcome.js"></script>
+    <script src="vanilla-tilt.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="../../vue/vue.js"></script>
+<link href="welcome.css" rel="stylesheet"></style>
+</head>
+<body>
+    <h1>Welcome<br/>To</h1>
+    <div class="background">
+            <div  class="coder" >Coder
+            </div>
+            <div class="timebox" id="timeBox1" ></div>
+        <div class="theMaxSContainer">
+            <!-- <div class="Searchcontainer">
+                <ion-icon name="telescope-outline" class="telescope"></ion-icon>
+                    <div class="search-box" id="searBox1">
+                        <input type="text" onblur="searchBoxOnblur()" onfocus="searchBoxOnfocus()" class="search-btn" id="search_btn" placeholder="开始探索"  >
+                    </div>
+                    <i class="fa-solid fa-magnifying-glass item"></i>
+            </div> -->
+
+        </div>
+        <!-- onfocus="searchfocus(this.id)" -->
+
+            <a href="#" class="toLogin"  >开始探索</a>
+            <div class="home">Home</div>   
+            <div class="CardContainer">
+                <div class="card">
+                    <div class="content">
+                        <h2>Developer</h2>
+                        <h3>zjj</h3>
+                        <p>realistic glass card hover effect</p>
+                        <a href="#">readMore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <h2>PZX</h2>
+                        <h3>个人简介</h3>
+                        <p>中文测试<br/></p>
+                        <a href="#">readMore</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <h2>Developer</h2>
+                        <h3>cz</h3>
+                        <p>realistic glass card hover effect</p>
+                        <a href="#">readMore</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="vanilla-tilt.js"></script>
+    <script>
+                VanillaTilt.init(document.querySelectorAll(".card"),{
+            max:15,
+            speed:400,
+            glare:true,
+            "max-glare":1
+
+        })
+    </script>
+    <!-- <script>
+        const buttons = document.querySelector('.toLogin');
+        buttons.addEventListener('click',function(e){
+            let x = e.clientX - e.target.offsetLeft;
+    let y = e.clientY - e.target.offsetTop;
+    let ripples = document.createElement('span');
+    ripples.style.left = x+'px';
+    ripples.style.top = y+'px';
+    this.appendChild(ripples);
+    setTimeout(()=>{
+        ripples.remove()
+    },100000);
+        })
+
+    </script> -->
+    <script>
+
+        const background = document.querySelector(".background")
+
+        document.addEventListener('scroll',()=>{
+            const scrollY = window.scrollY
+            if(scrollY!==0){
+                background.style.backgroundPosition = `calc(50% + ${scrollY}px) calc(50% + ${scrollY}px)`
+
+            }else{
+                background.style.backgroundPosition=``
+            }
+        })
+    </script>
+<script src="https://kit.fontawesome.com/f23451c27c.js" crossorigin="anonymous"></script>
+<script>
+   
+</script>
+</body>
+</html>

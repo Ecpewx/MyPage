@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 引入css文件 -->
+        <link rel="stylesheet" href="./login.css">
+        <link rel="icon" href="../../image/favicon.ico" type="image/x-icon">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!-- 引入jquery -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="login.js"></script>
+        <script src="../global.js"></script>
+        <title>login</title>
+    </head>
+    <body>
+        <!-- 最外层的大盒子 -->
+       <div class="box">
+        <!-- 滑动盒子 -->
+        <div class="pre-box">
+            <h1>WELCOME </h1>
+            <p>TO JOIN US!</p>
+            <div class="img-box">
+                <img src="../../image/touer.png" alt="">
+            </div>
+        </div>
+        <!-- 注册盒子 -->
+        <div class="register-form">
+            <!-- 标题盒子 -->
+            <div class="title-box">
+                <h1>注册</h1>
+            </div>
+            <!-- 输入框盒子 -->
+            <!--注册布局，在每个input下都有错误提示，且为光标失去焦点的提示-->
+            <div class="input-box">
+                <input class="username1" id="regusername" onblur="judegeUsername()" on type="text" placeholder="用户名">
+                <p  style="display:none;"  class="userFormatError" id="UformatError">字母数字下划线(非开头)8-20位或邮箱</p>
+                <div class="reg_pas_box">
+                    <input class="password1" type="password" id="regpassword" onblur="judgePassword()" placeholder="密码">
+                    <img class='pasShow' onclick="showPas()"></img>
+                </div>
+                <!-- <p style="display: none;"  class="userRepeat" id="usernameRepeate">用户名重复，请重新输入</p> -->
+                <p  style="display:none;"  class="pFormatError"  id="pFormatError">字母数字非空格组成，8-20位</p>
+                <div class="reg_pas_box">
+                <input class="repassword1" id="repassword" onblur="judgeRePassword()" type="password" placeholder="确认密码">
+                <img class='rpasShow' onclick="showRePas()"></img>
+                
+            </div>
+                <p  style="display: none;" class="repasswordError" id="RPError">输入的两次密码不一致</p>
+
+            </div>
+            <!-- 按钮盒子 -->
+            <div class="btn-box">
+
+                <button onclick="register()">注册</button>
+                <!-- 绑定点击事件 -->
+                <p onclick="mySwitch()">已有账号?去登录</p>
+            </div>
+        </div>
+        <!-- 登录盒子 -->
+        <div class="login-form">
+            <!-- 标题盒子 -->
+            <div class="title-box">
+                <h1>登录</h1>
+            </div>
+            <!-- 输入框盒子 -->
+            <div class="input-box">
+                <input class="username2" type="text" placeholder="用户名">
+
+                    <input class="password2" type="password" placeholder="密码">
+
+
+
+            </div>
+            <!-- 按钮盒子 -->
+            <div class="btn-box">
+
+                <!-- 绑定点击事件 -->
+                <p  onclick="mySwitch()">没有账号?去注册</p>
+                <button onclick="login()">登录</button>
+                <p  onclick="forgetPassword()">忘记密码？</p>
+            </div>
+        </div>
+       </div>
+    </body>
+</html>
