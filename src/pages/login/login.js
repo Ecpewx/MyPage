@@ -1,4 +1,13 @@
-let flag=true
+// var theurl = url;
+// var loginurl = theurl+"/login_account";
+
+var flag=true;
+var usernameLegal=true;
+var passwordLegal =true;
+var repasequal = true; 
+var showRegpas = false;
+// let url="http://localhost:8080/coderhome";
+//进行登录和注册框的切换
 const mySwitch=()=>{
    if(flag){
        // 获取到滑动盒子的dom元素并修改它移动的位置
@@ -6,13 +15,13 @@ const mySwitch=()=>{
        // 获取到滑动盒子的dom元素并修改它的背景颜色
        $(".pre-box").css("background-color","#c9e0ed")
        //修改图片的路径
-       $("img").attr("src","./img/wuwu.jpeg")
+       $("img").attr("src","../../image/touer.png")
        
    }
    else {
        $(".pre-box").css("transform","translateX(0%)")
        $(".pre-box").css("background-color","#C6E2FF")
-       $("img").attr("src","./img/waoku.jpg")
+       $("img").attr("src","../../image/touer.png")
    }
    flag=!flag
 }
@@ -40,3 +49,113 @@ const bubleCreate=()=>{
 setInterval(() => {
     bubleCreate()
 }, 200);
+//设置用户忘记密码时应该跳转的页面
+forgetPassword=()=>{
+
+}
+//光标失去交点的提示，用来验证用户名密码，以及确认密码时有没有错误
+judegeUsername=()=>{
+    var username = $("#regusername").val();
+    var usernameError = document.querySelector("#UformatError");
+    // /^[\u4E00-\u9FA5a-zA-Z0-9_@.]{8,30}$/
+    //正则表达式，包含特殊字符
+    if (!username.match( /^[A-Za-z\d][\w]{7,20}$/)&&!username.match(/^[\w]+@[A-Za-z]+(\.[A-Za-z0-9]+){1,2}$/)) {
+    usernameError.style.display = "block";
+    usernameLegal = false;
+    }
+    else {
+        usernameError.style.display = "none";
+        usernameLegal = true;
+    }
+}
+//展示密码的小眼睛
+showRegPas=()=>{
+    var show = document.querySelector(".pasShow");
+    var hide = document.querySelector(".pasHide");
+if(!showRegpas){
+    show.style.display="none";
+    hide.style.display="block";
+}
+}
+//判断注册密码的正确性
+judgePassword=()=>{
+    var password = $("#regpassword").val();
+    var passwordError = document.querySelector("#pFormatError");
+    var rePassword = $("#repassword").val();
+    var rePasswordError = document.querySelector("#RPError");
+    if(!password.match(/^(?=.[a-z])(?=.*\d)[\s\S]{8,20}$/)){
+        passwordError.style.display = "block";
+         passwordLegal =false;
+    } else{
+        passwordError.style.display = "none";
+        passwordLegal =true;
+    }
+    if(rePassword!=''&&password!=''&&password!=rePassword){
+        rePasswordError.style.display="block";
+        repasequal = false;
+    }
+    else{
+        rePasswordError.style.display = "none";
+        repasequal = true;
+    }
+
+}
+judgeRePassword=()=>{
+    var password = $("#regpassword").val();
+    var rePassword = $("#repassword").val();
+    var rePasswordError = document.querySelector("#RPError");
+    if(password!=""&&password!=rePassword){
+        rePasswordError.style.display="block";
+        repasequal = false;
+    }
+    else{
+        rePasswordError.style.display = "none";
+        repasequal = true;
+    }
+}
+//注册方法
+register=()=>{
+var registerurl = url+"/register_account";
+    var username = $("#regusername").val();
+    var password=$("#regpassword").val();
+    if(usernameLegal&&passwordLegal&repasequal){
+        $.ajax({
+                   url:registerurl,
+                   type:"POST",
+                   data:{
+                       username:username,
+                       password:password
+                   },
+                   error:function(){
+                       alert("注册失败");
+                   },
+                   success: function(data){
+                       alert("注册成功");
+                   }
+               })
+    }
+}
+//登录ajax
+login=()=>{
+    userid=10;
+    var loginurl = url+"/login_account";
+    console.log(userid);
+// var username = $(".username1").val();
+// var password=$("#regpassword").val();
+//     if(usernameLegal&&passwordLegal&repasequal){
+//         $.ajax({
+//                 url:loginurl,
+//                 type:"POST",
+//                 data:{
+//                     username:username,
+
+//                 },
+//                 error:function(){
+//                     alert("请求失败");
+//                 },
+//                 success: function(data){
+//                     alert("请求成功");
+//                 }
+//         })
+//     }
+}

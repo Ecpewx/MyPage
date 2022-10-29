@@ -29,11 +29,11 @@ span {
     bottom: 0;
     border-radius: 50%;
     /* 径向渐变 */
-    background: radial-gradient(circle at 72% 28%, #fff 3px, #ff7edf 8%, #5b5b5b, #aad7f9 100%);
+    background: radial-gradient(circle at 72% 28%, #fff 3px, #C6E2FF 8%, #5b5b5b, #aad7f9 100%);
     /* 泡泡内阴影 */
     box-shadow: inset 0 0 6px #fff,
         inset 3px 0 6px #eaf5fc,
-        inset 2px -2px 10px #efcde6,
+        inset 2px -2px 10px #C6E2FF,
         inset 0 0 60px #f9f6de,
         0 0 20px #fff;
     /* 动画 */
@@ -96,12 +96,11 @@ span {
     top: 0;
     z-index: 99;
     border-radius: 4px;
-    background-color: #edd4dc;
+    background-color: #C6E2FF;
     box-shadow: 2px 1px 19px rgba(0, 0, 0, .1);
     /* 动画过渡，先加速再减速 */
     transition: 0.5s ease-in-out;
 }
-
 /* 滑动盒子的标题 */
 .pre-box h1 {
     margin-top: 150px;
@@ -182,10 +181,69 @@ span {
 }
 
 /* 输入框 */
-input {
+.username2 {
     width: 60%;
     height: 40px;
     margin-bottom: 20px;
+    text-indent: 10px;
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 120px;
+    /* 增加磨砂质感 */
+    backdrop-filter: blur(10px);
+}
+.username1 {
+    width: 60%;
+    height: 40px;
+    margin-bottom: 10px;
+    text-indent: 10px;
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 120px;
+    /* 增加磨砂质感 */
+    backdrop-filter: blur(10px);
+}
+.reg_pas_box{
+    width: 60%;
+    height: 40px;
+    margin-bottom: 10px;
+    text-indent: 10px;
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 120px;
+    /* 增加磨砂质感 */
+    backdrop-filter: blur(10px);
+}
+.password1{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 10px;
+
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+
+
+    /* backdrop-filter: blur(10px); */
+}
+.bx{
+    text-indent: 0px;
+    font-size: 18px;
+
+}
+.repassword1{
+    width: 80%;
+    height: 40px;
+    margin-bottom: 10px;
+
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+input::-ms-clear{display:none;}
+input::-ms-reveal{display:none;}
+.password2{
+    width: 60%;
+    height: 40px;
+    margin-bottom: 10px;
     text-indent: 10px;
     border: 1px solid #fff;
     background-color: rgba(255, 255, 255, 0.3);
@@ -232,6 +290,7 @@ button:hover {
 }
 
 /* 按钮文字 */
+
 .btn-box p {
     height: 30px;
     line-height: 30px;
@@ -239,10 +298,16 @@ button:hover {
     user-select: none;
     font-size: 14px;
     color: white;
-
+    
 }
 
 .btn-box p:hover {
     cursor: pointer;
     border-bottom: 1px solid white;
+}
+.input-box p{
+    margin: 0px 0px 10px 0px;
+    height: 15px;
+    font-size: 16px;
+    color: red;
 }
