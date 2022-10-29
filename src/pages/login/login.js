@@ -2,10 +2,9 @@
 // var loginurl = theurl+"/login_account";
 
 var flag=true;
-var usernameLegal=true;
-var passwordLegal =true;
-var repasequal = true; 
-var showRegpas = false;
+var usernameLegal=false;
+var passwordLegal =false;
+var repasequal = false; 
 // let url="http://localhost:8080/coderhome";
 //进行登录和注册框的切换
 const mySwitch=()=>{
@@ -14,14 +13,14 @@ const mySwitch=()=>{
        $(".pre-box").css("transform","translateX(100%)")
        // 获取到滑动盒子的dom元素并修改它的背景颜色
        $(".pre-box").css("background-color","#c9e0ed")
-       //修改图片的路径
-       $("img").attr("src","../../image/touer.png")
+    //    //修改图片的路径
+    //    $(".the_max_img").attr("src","../../image/touer.png")
        
    }
    else {
        $(".pre-box").css("transform","translateX(0%)")
        $(".pre-box").css("background-color","#C6E2FF")
-       $("img").attr("src","../../image/touer.png")
+    //    $(".the_max_img").attr("src","../../image/touer.png")
    }
    flag=!flag
 }
@@ -69,13 +68,40 @@ judegeUsername=()=>{
     }
 }
 //展示密码的小眼睛
-showRegPas=()=>{
-    var show = document.querySelector(".pasShow");
-    var hide = document.querySelector(".pasHide");
-if(!showRegpas){
-    show.style.display="none";
-    hide.style.display="block";
-}
+showPas=(e)=>{
+    //首先获取传入对象的class属性
+    var eyeClassname = $(e).attr("class");
+   var inputClassName= eyeClassname.substring(0,eyeClassname.length-1);
+//获取对应的input的class
+
+    var input = document.querySelector("."+inputClassName);
+    //获取眼睛状态(show | hide)
+
+
+var eyes=document.querySelector("."+eyeClassname);
+var currentState = eyes.src.slice(-8,-4);
+    // attr("src","../../image/touer.png")
+    if(currentState=="show"){
+        // obj.src="./login_icons/hide.png";
+        // $("."+eyeClassname).attr("src","./login_icons/hide.png")
+        eyes.setAttribute("src","./login_icons/hide.png");
+
+        //.attr("src","./login_icons/hide.png")
+        // 
+        // setAttribute
+        input.type="text";
+    }else{
+        // obj.src="./login_icons/show.png";
+        // $("."+eyeClassname).attr("src","./login_icons/show.png")
+        //.attr("src","./login_icons/show.png")
+        eyes.setAttribute("src","./login_icons/show.png");
+
+        input.type="password";
+    }
+
+// if(!isShowRegpas){
+//     show.style.src="./login_icons/hide.png"
+// }
 }
 //判断注册密码的正确性
 judgePassword=()=>{
@@ -127,12 +153,14 @@ var registerurl = url+"/register_account";
                        password:password
                    },
                    error:function(){
-                       alert("注册失败");
+                       alert("网络错误");
                    },
                    success: function(data){
                        alert("注册成功");
                    }
                })
+    }else{
+        alert("注册失败，请检查输入内容");
     }
 }
 //登录ajax

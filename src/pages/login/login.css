@@ -204,6 +204,10 @@ span {
     backdrop-filter: blur(10px);
 }
 .reg_pas_box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
     width: 60%;
     height: 40px;
     margin-bottom: 10px;
@@ -215,9 +219,9 @@ span {
     backdrop-filter: blur(10px);
 }
 .password1{
-    width: 80%;
+    width: 85%;
     height: 40px;
-    margin-bottom: 10px;
+
 
     border: none;
     background-color: rgba(255, 255, 255, 0);
@@ -225,32 +229,32 @@ span {
 
     /* backdrop-filter: blur(10px); */
 }
-.bx{
-    text-indent: 0px;
-    font-size: 18px;
-
+.password2{
+    width: 85%;
+    height: 40px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+.password1e{
+    height: 25px;
+}
+.repassword1e{
+    height: 25px;
 }
 .repassword1{
-    width: 80%;
+    width: 85%;
     height: 40px;
-    margin-bottom: 10px;
+
 
     border: none;
     background-color: rgba(255, 255, 255, 0);
 }
+.password2e{
+    height: 25px;
+}
 input::-ms-clear{display:none;}
 input::-ms-reveal{display:none;}
-.password2{
-    width: 60%;
-    height: 40px;
-    margin-bottom: 10px;
-    text-indent: 10px;
-    border: 1px solid #fff;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 120px;
-    /* 增加磨砂质感 */
-    backdrop-filter: blur(10px);
-}
+
 
 input:focus {
     /* 光标颜色 */
