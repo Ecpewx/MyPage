@@ -1,0 +1,8 @@
+{
+    "pages":[
+        "pages/index/index",
+        "pages/welcome/welcom",
+        "pages/login/login",
+        "pages/personHomePage/personHomePage"
+    ]
+}
