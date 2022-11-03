@@ -1,5 +1,9 @@
-
 var url="http://localhost:8080/coderhome";
+/**
+ * 这里每个url放在global.js中，为了之后更改的方便
+ */
+
+
 /**
  * 
  * // const app = new Vue({

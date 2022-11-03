@@ -33,8 +33,8 @@
                     <img class="avatar"  alt="">
                 </span>
                 <div class="text logo-text">
-                    <span class="nickname" >Phoenix</span>
-                    <span class="describe"  onmouseover="overShow(this,event)" onmouseout="outHide()">我直接进行一个觉的行一个觉的睡我直接进行一个觉的睡我直接进行一行一个觉的睡我直接进行一个觉的睡我直接进行一行一个觉的睡我直接进行一个觉的睡我直接进行一睡我直接进行一个觉的睡我直接进行一个觉的睡我直接进行一个觉的睡</span>
+                    <span class="nickname" >用户名</span>
+                    <span class="describe"  onmouseover="overShow(this,event)" onmouseout="outHide()">个性签名</span>
                     <div id="showDiv" style="z-index: 1; position: absolute; background-color: white; border: 1px solid black;
                      max-width: 121%;    max-height: 6.2em; line-height: 1.2em; word-wrap:break-word;white-space:normal;overflow: hidden; font-size: 12px;"></div>
                 </div>
@@ -132,7 +132,7 @@
 
         <div class="search-box">
             <input class="search-input" type="text" autocomplete="off" placeholder="搜索">
-            <button  class="confirmbtn">
+            <button  class="confirmbtn" onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this)">
                 <i class='bx bx-search glass'></i>
                 <span >搜索</span>
             </button>
@@ -183,13 +183,15 @@
         </div>
     </ul>
         </div>
-        <nav class="myblognav">
-        <input type="radio"  name="nav-item-opt" id="nav-item-opt-1" checked>
-        <label for="nav-item-opt-1" class="nav-item">算法</label>
-        <input type="radio"  name="nav-item-opt" id="nav-item-opt-2">
-        <label for="nav-item-opt-2" class="nav-item">前端</label>
-        <input type="radio" name="nav-item-opt" id="nav-item-opt-3">
-        <label for="nav-item-opt-3" class="nav-item">后端</label>
+        <nav class="myblognav" >
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-1" checked onclick="myBlog(0)">
+        <label for="nav-item-opt-1" class="nav-item">最新</label>
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-2" onclick="myBlog(1)">
+        <label for="nav-item-opt-2" class="nav-item">算法</label>
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-3" onclick="myBlog(2)">
+        <label for="nav-item-opt-3" class="nav-item">前端</label>
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-4" onclick="myBlog(3)">
+        <label for="nav-item-opt-4" class="nav-item">后端</label>
         <div class="tracker"></div>
         </nav>
         <div class="maincontent">
@@ -266,7 +268,38 @@
             </div>
             
             <div class="pager">
-                <a class="nextpage" href="#">下一页</a>
+                <div class="pagePartOne">
+                    <p class="lastPage">上一页</p>
+                    <p  class="pageNum" id="page1" onclick="pageBrowse(this)">1</p>
+                    <span style="display: none" class="morePage" id="morePageLeft" style="margin-right: 10px;">
+                        <p style="  padding-bottom: 12px;">…</p>
+                    </span>
+                    <p class="pageNum" id="page2" onclick="pageBrowse(this)">2</p>
+                    <p class="pageNum" id="page3" onclick="pageBrowse(this)">3</p>
+                    <p class="pageNum" id="page4"  onclick="pageBrowse(this)">4</p>
+                    <p class="pageNum" id="page5"  onclick="pageBrowse(this)">5</p>
+                    <p class="pageNum" id="page6"  onclick="pageBrowse(this)">6</p>
+                    <span  class="morePage" id="morepPageRight" style="margin-right: 10px;">
+                        <p style="  padding-bottom: 12px;">…</p>
+                       </span>
+                    <p class="pageNum" id="page7" onclick="pageBrowse(this)">10</p>
+                    <p class="nextPage" >下一页</p>
+                </div>
+                <div class="pagePartTwo">
+
+                       <div class="toPage-box">
+                        到
+                        <input class="toPage" style="min-width: 40px; width: 40px;">
+                        页
+                       </div>
+                       <button class="surePageBtn" type="button" onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this)">
+                        <span class="sureTopage">确定</span>
+                        </button>
+
+                </div>
+
+
+
             </div>
 
         </div>

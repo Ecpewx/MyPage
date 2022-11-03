@@ -1,5 +1,8 @@
 // var theurl = url;
 // var loginurl = theurl+"/login_account";
+var checkNameUrl = url+"/username_check";
+var registerurl = url+"/register_web";
+var loginurl = url+"/login_web";
 store.set('user_acid', -1)
 // var v=new Vue({
 //     data(){
@@ -9,8 +12,6 @@ store.set('user_acid', -1)
 
 //     }
 // })
-console.log(app._data.count)
-app._data.count=10;
 var flag=true;
 var usernameLegal=false;
 var passwordLegal =false;
@@ -67,7 +68,7 @@ forgetPassword=()=>{
  */
 function username_check(UClassName){
     var username = $("."+UClassName).val();
-    var checkNameUrl = url+"/username_check";
+
     var value;
     $.ajax({
         url:checkNameUrl,
@@ -172,7 +173,7 @@ judgeRePassword=()=>{
 }
 //注册方法
 register=()=>{
-var registerurl = url+"/register_web";
+
     var username = $("#regusername").val();
     var password=$("#regpassword").val();
     if(usernameLegal&&passwordLegal&repasequal){
@@ -198,7 +199,7 @@ var registerurl = url+"/register_web";
 //登录ajax
 login=()=>{
 
-    var loginurl = url+"/login_web";
+
     var username =$("#logUser").val();
     var usernameError= document.querySelector(".inputNameError");
     var  pasMsg = document.querySelector(".inputPasError");
