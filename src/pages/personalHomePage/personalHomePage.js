@@ -10,12 +10,22 @@ var myBlogUrl = url+"/showBlog_web";
 var totalBlogUrl =url+"/totalBlog_ca_web"
 var showBlog="";
 var TotalBlogNum = -1;
-var pageNum=1;
+var initPageNum=1;
 var pageSize = 5;
-var totalPage = 10;
+var totalPage =10;
 var pager = document.querySelector("#pager");
-
-
+var page1 = document.querySelector("#page1");
+var page2 = document.querySelector("#page2");
+var page3 = document.querySelector("#page3");
+var page4 = document.querySelector("#page4");
+var page5 = document.querySelector("#page5");
+var page6 = document.querySelector("#page6");
+var page7 = document.querySelector("#page7");
+var leftEllipsis = document.querySelector("#morePageLeft");
+var rightEllipsis = document.querySelector("#morepPageRight");
+var lastpageNum=0;
+var lastpage ="";
+var selectColor="#E4E5DE"
 function btnBaGrColOver(e){
     e.style.backgroundColor="#7ec6ff";
 }
@@ -30,94 +40,15 @@ function switchBlogToJson(e){
     showBlog = e;
     console.log(showBlog)
 }
-var page1 = document.querySelector("#page1");
-var page2 = document.querySelector("#page2");
-var page3 = document.querySelector("#page3");
-var page4 = document.querySelector("#page4");
-var page5 = document.querySelector("#page5");
-var page6 = document.querySelector("#page6");
-var page7 = document.querySelector("#page7");
-var leftEllipsis = document.querySelector("#morePageLeft");
-var rightEllipsis = document.querySelector("#morepPageRight");
-var lastpage="";
 
-function pageBrowse(curPage){
-    var curPageNum=parseInt(curPage.innerHTML);
+/**
+ * 
+ * @param {组件} curPage 
+ * @returns 
+ * 
+ */
 
-    if(lastpage!=""&&curPage==lastpage){
-        return;
-    }
-    /**
-     * 假如选择的页数大于5，那么就左边显示省略号，并且隐藏左边第二个页面
-     * 
-     */
-     page1.style.display="flex"
-     page2.style.display="flex"
-     page3.style.display="flex"
-     page4.style.display="flex"
-     page5.style.display="flex"
-     page6.style.display="flex"
-     rightEllipsis.style.display="flex";
-     leftEllipsis.style.display= "flex";
-     page7.style.display="flex"
-        page2.innerHTML=curPageNum-2;
-        page3.innerHTML=curPageNum-1;
-        page4.innerHTML=curPageNum;
-        page5.innerHTML=curPageNum+1;
-        page6.innerHTML=curPageNum+2;
-        page4.style.background="#E4E5DE";
-    if(curPageNum<5){
-        leftEllipsis.style.display= "none";
-        switch(curPageNum){
-            case 1:
-                page1.style.display="none"
-                page2.style.display="none"
-                page3.style.display="none"
-                break;
-            case 2:
-                page1.style.display="none"
-                page2.style.display="none"
-                break;
-            case 3:
-                page1.style.display="none"
-                break;
-            case 4:
-                break;
-        }
-    }
-    else {
-        if(totalPage-curPageNum>=4){
-            page4.style.background="#E4E5DE";
-        }else{
-            switch(curPageNum){
-                case totalPage-3:
-                    rightEllipsis.style.display="none";
-                    break;
-                case totalPage-2:
-                    page6.style.display="none"
-                    rightEllipsis.style.display="none";
-                    break;
-                case totalPage-1:
-                    page6.style.display="none"
-                    page5.style.display="none"
-                    rightEllipsis.style.display="none";
-                    break;
-                case totalPage:
-                    page7.style.display="none"
-                    page5.style.display="none"
-                    page6.style.display="none"
-                    rightEllipsis.style.display="none";
-                    break;
-
-
-            }
-
-        }
-
-    }
-}
 window.onpageshow=function(){
-    pageBrowse(page1);
     $.ajax({
         url:userInfoUrl,
         type:"GET",
@@ -140,27 +71,8 @@ window.onpageshow=function(){
             document.querySelector('.describe').innerHTML=data.intro;
         }
     })
-    $.ajax({
-        url:myBlogUrl,
-        type:"GET",
-        data:{
-            userid:store.get("userinfo").id,
-            ca:0,
-            pageNum:pageNum,
-            pageSize:pageSize,
-        },
-        async:false,
-        error:function(){
-            alert("服务器异常，请稍后再试");
+    myBlog(0,initPageNum,pageSize);
 
-        },
-        success:function(data){
-            switchBlogToJson(data);
-            /**
-             * 获取成功时获取用户的avatar，nickname,describe
-             */
-        }
-    })
     // $.ajax({
     //     url:totalBlogUrl,
     //     type:"GET",
@@ -176,10 +88,12 @@ window.onpageshow=function(){
     //     success:function(data){
     //         TotalBlogNum=data;
     //        totalPage= Math.floor((TotalBlogNum+pageSize-1)/pageSize);
+
     //        page1.style.background="#E4E5DE"
     //        if(totalPage==0){
     //         pager.style.display="none";
     //        }else{
+    //         page7.innerHTML=totalPage;
     //         pageBrowse(page1)
     //        }
     //         /**
@@ -187,8 +101,204 @@ window.onpageshow=function(){
     //          */
     //     }
     // })
+page7.innerHTML=totalPage;
+    pageBrowse(page1)
+}
+function pageLess(curPage){
+    // var curPageNum=parseInt(curPage.innerHTML);
+    curPage.style.background=selectColor;
+    if(lastpage==""){
+        lastpage=curPage;
+    }
+    else{
+        if(lastpage==curPage)
+        return;
+        lastpage.style.background="";
+        lastpage=curPage
+    }
+    page1.style.display="none"
+    page2.style.display="none"
+    page3.style.display="none"
+    page4.style.display="none"
+    page5.style.display="none"
+    page6.style.display="none"
+    page7.style.display="none"
+    rightEllipsis.style.display="none";
+    leftEllipsis.style.display= "none";
+    /**
+     * 以下代码为测试时使用
+     */
+    switch(totalPage){
+        case 1:
+            page1.style.display="flex"
+            break;
+        case 2:
+            page1.style.display="flex"
+            page2.style.display="flex"
+            break;
+        case 3:
+            page1.style.display="flex"
+            page2.style.display="flex"
+            page3.style.display="flex"
+            break;
+        case 4:
+            page1.style.display="flex"
+            page2.style.display="flex"
+            page3.style.display="flex"
+            page4.style.display="flex"
+            break;
+        case 5:
+            page1.style.display="flex"
+            page2.style.display="flex"
+            page3.style.display="flex"
+            page4.style.display="flex"
+            page5.style.display="flex"
+            break;
+    }
+
+}
+/**
+ * 
+ * @param {*} curPage 
+ * @returns 
+ * 这里传字符串
+ */
+function pageLot(curPage){
+var curPageNum=parseInt( curPage);
+    if(curPageNum==lastpageNum){
+        return;
+    }else{
+        lastpageNum=curPageNum;
+    }
+    page1.style.display="flex"
+    page2.style.display="flex"
+    page3.style.display="flex"
+    page4.style.display="flex"
+    page5.style.display="flex"
+    page6.style.display="flex"
+    page7.style.display="flex"
+    rightEllipsis.style.display="flex";
+    leftEllipsis.style.display= "flex";
+    page2.innerHTML=curPageNum-2;
+    page3.innerHTML=curPageNum-1;
+    page4.innerHTML=curPageNum;
+    page5.innerHTML=curPageNum+1;
+    page6.innerHTML=curPageNum+2;
+    page4.style.background=selectColor;
+    if(curPageNum<5){
+    leftEllipsis.style.display= "none";
+    switch(curPageNum){
+        case 1:
+            page1.style.display="none"
+            page2.style.display="none"
+            page3.style.display="none"
+            break;
+        case 2:
+            page1.style.display="none"
+            page2.style.display="none"
+            break;
+        case 3:
+            page1.style.display="none"
+            break;
+        case 4:
+            break;
+    }
 }
 
+    if(totalPage-curPageNum>=4){
+        page4.style.background=selectColor;
+    }else{
+        switch(curPageNum){
+            case totalPage-3:
+                rightEllipsis.style.display="none";
+                break;
+            case totalPage-2:
+                page6.style.display="none"
+                rightEllipsis.style.display="none";
+                break;
+            case totalPage-1:
+                page6.style.display="none"
+                page5.style.display="none"
+                rightEllipsis.style.display="none";
+                break;
+            case totalPage:
+                page7.style.display="none"
+                page5.style.display="none"
+                page6.style.display="none"
+                rightEllipsis.style.display="none";
+                break;
+
+
+        }
+
+    }
+
+
+}
+
+function pageBrowse(curPage){
+    if(totalPage>5)
+    pageLot(curPage.innerHTML);
+    else
+    pageLess(curPage)
+    /**
+     * 假如选择的页数大于5，那么就左边显示省略号，并且隐藏左边第二个页面
+     * 
+     */
+}
+function toPage(){
+    var page= document.querySelector("#pageValue");
+   if( !isNaN(parseInt(page.value)) && isFinite(page.value)){
+    if(parseInt( page.value)>totalPage)
+   page.value=totalPage;
+   if(parseInt( page.value)<1)
+   page.value=1;
+    if(totalPage>5)
+    pageLot(page.value);
+    else{
+        pageLess(document.querySelector("#page"+ page.value));
+    }
+    page.value="";
+   }else{
+    page.value="";
+    return;
+   }
+}
+function toLastPage(){
+    if(totalPage>5){
+        if(lastpageNum>1)
+        pageLot(lastpageNum-1);
+        else
+        return;
+    }
+    else{
+        if(parseInt( lastpage.innerHTML)>1){
+         var temp=   parseInt(lastpage.innerHTML)-1
+            pageLess(document.querySelector("#page"+temp))
+        }
+        else{
+            return;
+        }
+    }
+}
+function toNextPage(){
+
+    if(totalPage>5){
+        if(lastpageNum<totalPage)
+        pageLot(lastpageNum+1);
+        else
+        return;
+    }
+    else{
+        if(parseInt( lastpage.innerHTML)<totalPage){
+         var temp=   parseInt(lastpage.innerHTML)+1
+            pageLess(document.querySelector("#page"+temp))
+        }
+        else{
+            return;
+        }
+    }
+}
 const body=document.querySelector('body');
 const sidebar=body.querySelector('nav');
 // const searchBtn=body.querySelector('.search-box')
@@ -249,7 +359,7 @@ function searchBoxOnblur(){
     document.head.removeChild(style1)
     searchBox.style.width=''
 }
-function myBlog(ca){
+function myBlog(ca,pageNum,pageSize){
     $.ajax({
         url:myBlogUrl,
         type:"GET",
@@ -271,4 +381,5 @@ function myBlog(ca){
              */
         }
     })
+    
 }

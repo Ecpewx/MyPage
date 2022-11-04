@@ -269,7 +269,7 @@
             
             <div class="pager">
                 <div class="pagePartOne">
-                    <p class="lastPage">上一页</p>
+                    <p class="lastPage" onclick="toLastPage()">上一页</p>
                     <p  class="pageNum" id="page1" onclick="pageBrowse(this)">1</p>
                     <span style="display: none" class="morePage" id="morePageLeft" style="margin-right: 10px;">
                         <p style="  padding-bottom: 12px;">…</p>
@@ -283,16 +283,16 @@
                         <p style="  padding-bottom: 12px;">…</p>
                        </span>
                     <p class="pageNum" id="page7" onclick="pageBrowse(this)">10</p>
-                    <p class="nextPage" >下一页</p>
+                    <p class="nextPage" onclick="toNextPage()" >下一页</p>
                 </div>
                 <div class="pagePartTwo">
 
                        <div class="toPage-box">
                         到
-                        <input class="toPage" style="min-width: 40px; width: 40px;">
+                        <input class="toPage" type="text" id="pageValue" style="min-width: 40px; width: 40px;">
                         页
                        </div>
-                       <button class="surePageBtn" type="button" onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this)">
+                       <button class="surePageBtn" type="button" onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this)" onclick="toPage()">
                         <span class="sureTopage">确定</span>
                         </button>
 
