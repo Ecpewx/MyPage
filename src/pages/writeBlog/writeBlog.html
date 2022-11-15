@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../image/favicon.ico" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <link rel="stylesheet" href="./writeBlog.css">
+    <title>创作博客</title>
+</head>
+<body>
+    <div class="toolbar-container">
+        <div class="toolbar-left">
+            <div class="logo-container">
+                <!-- 跳转到首页 -->
+                <a href="../welcome/welcome.html" class="toolbar-toIndex" >
+                    <img src="../../image/touer.png" class="Logo">
+                    <h1 class="tarBarLogo-c">C<span class="tarBarLogo-rest">oderHome</span></h1>
+                </a>
+
+            </div>
+        </div>
+        <div class="toolbar-middle">
+            <div class="title">发布文章</div>
+        </div>
+        <div class="toolbar-right">
+            <a class="backtoPersonal" href="../personalHomePage/personalHomePage.html">
+                <img class="toolbar-avatar" src="../../image/defaultAvatar.png">
+            </a>
+            <div class="aboutus">
+                <a style="cursor: pointer">关于我们</a>
+                <i class="bx bx-chevron-down toggle" ></i>
+                <div class="dropDownAboutUs">
+                    <ul class="threeName">
+                        <li><a href="#">zjj</a></li>
+                        <li><a href="#">pzx</a></li>
+                        <li><a href="#">cz</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="tool-container">
+
+        <div class="drag-bar">
+            <!-- 图标 -->
+            <div class="w-out"></div>
+            <div class="w-narrow"></div>
+            <div class="w-ext"></div>
+        </div>
+        <div class="content">
+            <div class="add-picture-box">
+                <i class='bx bx-image-add ' id="add-image" ></i>
+                <span class="add-image-text" style="font-size: 30px;">图像</span>
+            </div>
+        </div>
+        <!-- box四条边可拖动区域 -->
+        <div class="edge edge-top"></div>
+        <div class="edge edge-bottom"></div>
+        <div class="edge edge-right"></div>
+        <div class="edge edge-left"></div>
+        <!-- box四角可拖动区域 -->
+        <div class="corner corner-lt"></div>
+        <div class="corner corner-lb"></div>
+        <div class="corner corner-rt"></div>
+        <div class="corner corner-rb"></div>
+    </div>
+    <div class="main" id="#app">
+<div class="view-container">
+    <div class="title-box">
+        <div class="item-content">
+            <pre data-v-1b7bccdd="" class="input__title_pre"></pre>
+            <div class="text-title-pre">
+                <textarea class="title-text" autocomplete="off" maxlength="100" autofocus="autofocus"  placeholder="请输入文章标题(5~100个字)"></textarea>
+               
+            </div>
+            <span data-v-1b7bccdd="" class="title-chk"> 还需输入<span data-v-1b7bccdd="" class="need-more"> 1 </span>个字 </span>
+        </div>
+
+    </div>
+    <div class="edit-area">
+
+    </div>
+  <div class="set-picture-box">
+    
+  </div>
+</div>
+    </div>
+    <div data-v-1b7bccdd id="moreDiv">
+        <div class="publish-box">
+            <div class="publish-opt-box">
+                <div data-v-1b7bccdd="" class="edit-tip-box"><!----><!---->
+                    <span data-v-1b7bccdd="" class="word-count mr24">共 0 字
+    
+                </span>
+                <button data-v-1b7bccdd="" type="button" class="el-button btn-position el-button--text el-button--medium"><!----><!---->
+                    <span> 
+                        回到顶部
+                        <i class='bx bxs-chevron-up' ></i>
+                    </span>
+                </button>
+            </div>
+            <div data-v-1b7bccdd="" class="btn-box">
+                <!-- <span data-v-1b7bccdd="">
+                    <span class="el-popover__reference-wrapper">
+                        <button data-v-1b7bccdd="" type="button" class="el-button btn-outline-secondary el-button--primary is-round el-popover__reference" data-report-click="{&quot;spm&quot;:&quot;3001.8067&quot;}" aria-describedby="el-popover-317" tabindex="0">
+                            <span>保存草稿
+                                <i data-v-1b7bccdd="" class="el-icon-caret-bottom" style="margin-left: 4px; margin-right: -2px;">
+                                </i>
+                            </span>
+                        </button>
+                    </span>
+                </span>-->
+            <button data-v-1b7bccdd="" type="button"  class="el-button btn-outline-secondary ml16 el-button--primary is-round" onmouseover="btnBorderOver(this)" onmouseout="btnBorderOut(this) " id="setTimePublish">
+                <span>定时发布</span>
+            </button> 
+            <button data-v-1b7bccdd="" type="button" class="el-button btn-outline-danger ml16 el-button--primary is-round" id="publishBlog" onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this) " onclick="publishBlog()"><!----><!---->
+                <span> 
+                发布博客
+                </span>
+            </button>
+        </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/store.js/1.3.20/store.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script src="../../vue/vue.js"></script>
+<script src="../global.js"></script>
+<script src="./tool.js"></script>
+<script src="./writeBolg.js"></script>
+</html>

@@ -11,6 +11,7 @@
     <link rel="icon" href="../../image/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_2556875_0myqblm2y33l.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
     <style type="text/css">
         .icon {
            width: 1em; height: 1em;
@@ -23,6 +24,7 @@
 
 </head>
     <title >CoderHome-个人主页</title>
+    <div class="shadow"></div>
 <body class="theBody">
 
     <nav class="sidebar close">
@@ -34,7 +36,7 @@
                 </span>
                 <div class="text logo-text">
                     <span class="nickname" >用户名</span>
-                    <span class="describe"  onmouseover="overShow(this,event)" onmouseout="outHide()">个性签名</span>
+                    <span class="describe"  onmouseover="overShow(this,event)" onmouseout="outHide()" title="">个性签名</span>
                     <div id="showDiv" style="z-index: 1; position: absolute; background-color: white; border: 1px solid black;
                      max-width: 121%;    max-height: 6.2em; line-height: 1.2em; word-wrap:break-word;white-space:normal;overflow: hidden; font-size: 12px;"></div>
                 </div>
@@ -138,13 +140,13 @@
             </button>
         </div>
         <div class='tarBar-right'>
-        <div class="login-box">
+        <!-- <div class="login-box">
         <button class="login">
             <p>登录/注册</p>
-        </button></div>
+        </button></div> -->
  
         <div class="aboutus"><a href="#">关于我们</a>
-            <i class="bx bx-chevron-down toggle" onclick="toggleswitch()"></i>
+            <i class="bx bx-chevron-down toggle" ></i>
             <div class="dropDownAboutUs">
                 <ul class="threeName">
                     <li><a href="#">zjj</a></li>
@@ -154,11 +156,12 @@
             </div>
         </div>
         <div class="blog-box">
-            <button class="blog">
+            <button class="blog" onclick="writeBlog()">
                 <i class='bx bx-edit-alt writeblog'></i>
                 <p>发布</p>
             </button>
         </div>
+        <div style="width: 30px;"></div>
         <button class="share-btn">
             <div class="share-front">
             <span class="text">分享</span>
@@ -184,89 +187,56 @@
     </ul>
         </div>
         <nav class="myblognav" >
-        <input type="radio"  name="nav-item-opt" id="nav-item-opt-1" checked onclick="myBlog(0)">
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-1" checked onclick="changeCa(0)">
         <label for="nav-item-opt-1" class="nav-item">最新</label>
-        <input type="radio"  name="nav-item-opt" id="nav-item-opt-2" onclick="myBlog(1)">
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-2" onclick="changeCa(1)">
         <label for="nav-item-opt-2" class="nav-item">算法</label>
-        <input type="radio"  name="nav-item-opt" id="nav-item-opt-3" onclick="myBlog(2)">
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-3" onclick="changeCa(2)">
         <label for="nav-item-opt-3" class="nav-item">前端</label>
-        <input type="radio"  name="nav-item-opt" id="nav-item-opt-4" onclick="myBlog(3)">
+        <input type="radio"  name="nav-item-opt" id="nav-item-opt-4" onclick="changeCa(3)">
         <label for="nav-item-opt-4" class="nav-item">后端</label>
         <div class="tracker"></div>
         </nav>
-        <div class="maincontent">
+        <div class="maincontent" id="blog">
 
-            <div class="every-blog-box">
+            <div class="every-blog-box"v-for="(item,index) in blogs">
                 <div class="title-box">
-                    <span class="title">java1</span>
+                    <span class="title" id="art_tit">{{item.title}}</span>
+                    <div class="fix-box">
+                        <!-- @click="deleteBlog(index)"  -->
+                        <i class='bx bx-trash deleteBlog' style="padding-bottom: 20px" @click="chooseBlog(index)" onclick="showDeleteToast()" ></i>
+                        <i class='bx bx-edit-alt bx-edit' ></i>
+                    </div>
                 </div>
                 <span class="time-box">
                     <i class='bx bx-time'></i>
-                    <span class="time">2022年10月10日</span>
+                    <span class="time"id="art_tim">{{item.date}}</span>
                 </span>
                 <div class="content-box">
-                    <div class="content">摘要： stream是java8新出的抽象概念，他可以让你根据你期望的方式来处理集合数据，能够轻松的执行复杂的查找、过滤和映射数据等操作。Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望</div>
+                    <div class="content"id="art_sum">摘要： {{item.showedContent}}</div>
                 </div>
                 <a class="readmore" href="#">阅读全文</a>
 
             </div>
-            <div class="every-blog-box">
-                <div class="title-box">
-                    <span class="title">java2</span>
-                </div>
-                <span class="time-box">
-                    <i class='bx bx-time'></i>
-                    <span class="time">2022年10月10日</span>
-                </span>
-                <div class="content-box">
-                    <div class="content">摘要： stream是java8新出的抽象概念，他可以让你根据你期望的方式来处理集合数据，能够轻松的执行复杂的查找、过滤和映射数据等操作。Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望</div>
-                </div>
-                <a class="readmore" href="#">阅读全文</a>
+            <div class="popup" id="popup">
+                <header class="theDelHea">
+                  <span>删除博客提示</span>
+                  <div class="close"><i class="uil uil-times" onclick="closeToast()"></i></div>
+                </header>
+                <div class="content">
+                    <div class="deleteCon-box">
+                        <i class='bx bxs-info-square bx-flip-vertical bx-tada' style="font-size: 20px;" ></i>
+                        <p>确定要删除此条博客吗</p>
+                    </div>
 
-            </div>
-            <div class="every-blog-box">
-                <div class="title-box">
-                    <span class="title">java3</span>
-                </div>
-                <span class="time-box">
-                    <i class='bx bx-time'></i>
-                    <span class="time">2022年10月10日</span>
-                </span>
-                <div class="content-box">
-                    <div class="content">摘要： stream是java8新出的抽象概念，他可以让你根据你期望的方式来处理集合数据，能够轻松的执行复杂的查找、过滤和映射数据等操作。Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望</div>
-                </div>
-                <a class="readmore" href="#">阅读全文</a>
 
-            </div>
-            <div class="every-blog-box">
-                <div class="title-box">
-                    <span class="title">java4</span>
                 </div>
-                <span class="time-box">
-                    <i class='bx bx-time'></i>
-                    <span class="time">2022年10月10日</span>
-                </span>
-                <div class="content-box">
-                    <div class="content">摘要： stream是java8新出的抽象概念，他可以让你根据你期望的方式来处理集合数据，能够轻松的执行复杂的查找、过滤和映射数据等操作。Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望</div>
+                <div class="chooseItem">
+                    <button class="sureDelete" onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this)" onclick="sureToDelete()">确认</button>
+                    <button class="cancleDelete"onmouseover="btnBaGrColOver(this)" onmouseout="btnBarGrColorOut(this)" onclick="closeToast() ">取消</button>
                 </div>
-                <a class="readmore" href="#">阅读全文</a>
 
-            </div>
-            <div class="every-blog-box">
-                <div class="title-box">
-                    <span class="title">java5</span>
-                </div>
-                <span class="time-box">
-                    <i class='bx bx-time'></i>
-                    <span class="time">2022年10月10日</span>
-                </span>
-                <div class="content-box">
-                    <div class="content">摘要： stream是java8新出的抽象概念，他可以让你根据你期望的方式来处理集合数据，能够轻松的执行复杂的查找、过滤和映射数据等操作。Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望tream是java8新出的抽象概念，他可以让你根据你期望</div>
-                </div>
-                <a class="readmore" href="#">阅读全文</a>
-
-            </div>
-            
+              </div>
             <div class="pager">
                 <div class="pagePartOne">
                     <p class="lastPage" onclick="toLastPage()">上一页</p>
